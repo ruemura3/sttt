@@ -1,1 +1,1 @@
-"# StrongestTicTacToe" 
+# StrongestTicTacToe
