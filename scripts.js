@@ -148,20 +148,17 @@ function updateBattleRecord(winner) {
 // 先攻後攻決め
 function decideFirstSecond() {
     $("#okButton").css("visibility", "hidden");
-    var startMsec = new Date();
-    while (new Date() - startMsec < 1000) {
-        if (isPlayerCircle) {
-            isPlayerTurn = false;
-            isPlayerCircle = false;
-            $("#firstSecond").css("color", "blue");
-            $("#firstSecond").html("後攻 ×");
-        } else {
-            isPlayerTurn = true;
-            isPlayerCircle = true;
-            $("#firstSecond").css("color", "red");
-            $("#firstSecond").html("先攻 ○");
-        }
-    };
+    if (isPlayerCircle) {
+        isPlayerTurn = false;
+        isPlayerCircle = false;
+        $("#firstSecond").css("color", "blue");
+        $("#firstSecond").html("後攻 ×");
+    } else {
+        isPlayerTurn = true;
+        isPlayerCircle = true;
+        $("#firstSecond").css("color", "red");
+        $("#firstSecond").html("先攻 ○");
+    }
     if (Math.random() >= 0.5) {
         isPlayerTurn = true;
         isPlayerCircle = true;
