@@ -1,1 +1,1 @@
-# StrongestTicTacToe
+# ○×ゲームAI
