@@ -4,39 +4,66 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>絶対負けない○×ゲームAI</title>
+    <title>最強マルバツゲームAI</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!-- My CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>絶対負けない○×ゲームAI</h1>
-    <div id="board">
-        <table>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
+    <!-- ↓↓↓ WordPressへ ↓↓↓ -->
+<div class="fz-28px">
+    <div>
+        <div class="items">
+            <div>AIの戦績</div>
+            <div id="record">
+                <span id="win"></span>勝 
+                <span id="lose"></span>敗 
+                <span id="tie"></span>分 
+            </div>
+        </div>
     </div>
-    <h2>現在の戦績</h2>
-    <p>
-        <span id="win"></span>勝
-        <span id="lose"></span>敗
-        <span id="tie"></span>分
-    </p>
+
+    <div id="firstBoard" class="canvas">
+        <div class="items">
+            <button class="btn" id="startButton">スタート</button>
+        </div>
+    </div>
+
+    <div id="secondBoard" class="canvas">
+        <div class="items">
+            <div>
+                あなたは...　<span id="firstSecond"></span>
+            </div>
+            <button id="okButton" class="btn" id="okButton">　　OK　　</button>
+        </div>
+    </div>
+
+    <div id="thirdBoard" class="canvas">
+        <div class="items">
+            <a id="restart" href="">リスタート</a>
+            <table class="board">
+                <tr>
+                    <td class="square" id="square0">　</td>
+                    <td class="square" id="square1">　</td>
+                    <td class="square" id="square2">　</td>
+                </tr>
+                <tr>
+                    <td class="square" id="square3">　</td>
+                    <td class="square" id="square4">　</td>
+                    <td class="square" id="square5">　</td>
+                </tr>
+                <tr>
+                    <td class="square" id="square6">　</td>
+                    <td class="square" id="square7">　</td>
+                    <td class="square" id="square8">　</td>
+                </tr>
+            </table>
+            <div id="gameMessage">　</div>
+        </div>
+    </div>
+</div>
+    <!-- ↑↑↑ WordPressへ ↑↑↑ -->
 
     <!-- My JavaScript -->
     <script src="scripts.js"></script>
@@ -45,5 +72,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </body>
 </html>
