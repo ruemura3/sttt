@@ -7,8 +7,8 @@ let tie = "tie" // 引き分けを表す文字列
 let getUrl = "https://ruemura3.com/sttt/getBattleRecord.php"; // 戦績取得APIのURL
 let updateUrl = "https://ruemura3.com/sttt/updateBattleRecord.php"; // 戦績更新APIのURL
 // 戦績を管理するテーブル名
-let table = "stupid_records"; // アホ
-// let table = "strongest_records"; // 最強
+let mode = "stupid"; // アホ
+// let mode = "strongest"; // 最強
 
 // ページ読み込みが終わったあとに走る処理
 window.onload = function() {
@@ -119,7 +119,7 @@ function displayBattleRecord() {
         url: getUrl,
         type: "post",
         dataType: "text",
-        data:{"table": table}
+        data:{"table": mode + "_records"}
     }).done(function (response) {
         var rtn = JSON.parse(response);
         $('#win').html(rtn.win);
@@ -137,7 +137,7 @@ function updateBattleRecord(winner) {
         url: updateUrl,
         type: "post",
         dataType: "text",
-        data:{"table": table, "winner": winner}
+        data:{"table": mode + "_records", "winner": winner}
     }).done(function (response) {
         displayBattleRecord();
     }).fail(function (xhr,textStatus,errorThrown) {
@@ -205,12 +205,7 @@ function act(square) {
     }
     
     // AIの行動
-    aisAct();
-
-    // 勝敗判定
-    if (judge()) {
-        return
-    }
+    setTimeout(aisAct, 500);
 };
 
 // プレイヤーの行動
@@ -244,6 +239,9 @@ function aisAct() {
 
     // ゲームメッセージを更新する
     updateTurnMessage();
+
+    // 勝敗判定
+    judge();
 };
 
 // 内部ボードを更新する
@@ -396,41 +394,15 @@ function showResultBoard(winner, square1, square2, square3) {
 // ゲーム終了処理
 function finishGame() {
     // マス0押下時処理
-    $("#square0").on("click", function() {
-        return;
-    });
-    // マス1押下時処理
-    $("#square1").on("click", function() {
-        return;
-    });
-    // マス2押下時処理
-    $("#square2").on("click", function() {
-        return;
-    });
-    // マス3押下時処理
-    $("#square3").on("click", function() {
-        return;
-    });
-    // マス4押下時処理
-    $("#square4").on("click", function() {
-        return;
-    });
-    // マス5押下時処理
-    $("#square5").on("click", function() {
-        return;
-    });
-    // マス6押下時処理
-    $("#square6").on("click", function() {
-        return;
-    });
-    // マス7押下時処理
-    $("#square7").on("click", function() {
-        return;
-    });
-    // マス8押下時処理
-    $("#square8").on("click", function() {
-        return;
-    });
+    $("#square0").off("click");
+    $("#square1").off("click");
+    $("#square2").off("click");
+    $("#square3").off("click");
+    $("#square4").off("click");
+    $("#square5").off("click");
+    $("#square6").off("click");
+    $("#square7").off("click");
+    $("#square8").off("click");
 };
 
 // 結果表示
@@ -461,10 +433,10 @@ function sleep(waitMsec) {
 // 最適解を見つける
 function findOptimalSolution() {
     // アホのAI
-    if (table == "stupid_records") {
+    if (mode == "stupid") {
         var rtn;
         var array = myFindIndex("");
         rtn = array[Math.floor(Math.random() * array.length)];
         return rtn;
-    }
+    };
 };
