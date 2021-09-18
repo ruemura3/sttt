@@ -227,7 +227,7 @@ function act(square) {
     if (judge()) {
         return
     }
-    
+
     // AIの行動
     setTimeout(aisAct, 300);
 };
@@ -449,7 +449,7 @@ function showResult(winner) {
 // 指定ミリ秒だけ処理を止める
 function sleep(waitMsec) {
     var startMsec = new Date();
-   
+
     // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
     while (new Date() - startMsec < waitMsec);
 };
@@ -479,11 +479,11 @@ function findOptimalSolution() {
             if (playerIndex == 0 || playerIndex == 2 || playerIndex == 6 || playerIndex == 8) {
                 return 4;
             }
-            // 真ん中を取られていたら角のどこかを取る 
+            // 真ん中を取られていたら角のどこかを取る
             else if (playerIndex == [4]) {
                 rtn = getRandomFrom([0, 2, 6, 8]);
                 return rtn;
-            } 
+            }
             // 壁を取られていたら真ん中を取る
             else {
                 return 4;
@@ -530,7 +530,7 @@ function findOptimalSolution() {
                     rtn = getRandomFrom([1, 2, 3, 5, 6, 7]);
                     return rtn;
                 };
-            } 
+            }
             // 1手目に角を取った場合
             else if (aiIndex == 0) {
                 // 隣の角とその隣接した壁のどちらかを取られたときは反対の角を取る
@@ -610,33 +610,26 @@ function findOptimalSolution() {
             rtn = getRandomFrom(reaches);
             return rtn;
         };
-        console.log("findCanDoubleReaches: " + player);
         // AIがダブルリーチにできる所があれば取る
         var doubleReaches = findDoubleReaches(ai);
-        console.log(doubleReaches);
         if (doubleReaches.length != 0) {
             rtn = getRandomFrom(doubleReaches);
             return rtn;
         };
-        console.log("findCanDoubleReaches: " + player);
         // プレイヤーがダブルリーチにできる所があれば取る
         var doubleReaches = findDoubleReaches(player);
-        console.log(doubleReaches);
         if (doubleReaches.length != 0) {
             rtn = getRandomFrom(doubleReaches);
             return rtn;
         };
         // それ以外の場合はリーチにできる場所にランダムに置く
-        console.log("findCanReaches");
         var places = findCanReaches();
-        console.log(places);
         if (places.length != 0) {
             rtn = getRandomFrom(places);
             return rtn;
         };
         // 空いているマスをランダムに返す
         rtn = getRandom();
-        console.log(rtn)
         return rtn;
     };
 };
@@ -850,9 +843,9 @@ function findCanReaches() {
 // ダブルリーチにできる場所を探す
 function findDoubleReaches(player) {
     var rtn = [];
-    var tmpBoard = board.slice(0, board.length);
     let empties = myFindIndex(empty);
     for (i in empties) {
+        var tmpBoard = board.slice(0, board.length);
         tmpBoard[empties[i]] = player
         var reaches = findReaches(tmpBoard, ai);
         if (reaches.length >= 2) {
